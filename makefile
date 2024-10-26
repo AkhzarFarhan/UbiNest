@@ -1,5 +1,5 @@
-# usage: make git m='your comment'
-git:
+# usage: make push m='your comment'
+push:
 	git checkout dev
 	git add .
 	git commit -m "$m"

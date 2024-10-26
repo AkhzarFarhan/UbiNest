@@ -27,6 +27,9 @@ env/
 *.sublime-project
 *.sublime-workspace
 
+# Specific virtual environment folder
+UbiNest/env/
+
 # Log files
 *.log
 
