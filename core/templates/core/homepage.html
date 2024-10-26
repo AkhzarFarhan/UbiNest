@@ -1,0 +1,52 @@
+<!-- core/templates/core/homepage.html -->
+<h1>Welcome, {{ profile.user.username }}!</h1>
+
+<h2>Profile Overview</h2>
+<p>Role: {{ profile.role }}</p>
+<img src="{{ profile.avatar.url }}" alt="Avatar" style="width:100px; height:100px;">
+<p>{{ profile.bio }}</p>
+
+<h2>Upcoming Tasks</h2>
+<ul>
+    {% for task in tasks %}
+        <li>{{ task.title }} - Due: {{ task.due_date }} - Status: {{ task.status }}</li>
+    {% empty %}
+        <li>No tasks found.</li>
+    {% endfor %}
+</ul>
+
+<h2>Recent Transactions</h2>
+<ul>
+    {% for transaction in transactions %}
+        <li>{{ transaction.transaction_type }}: ${{ transaction.amount }} - {{ transaction.description }}</li>
+    {% empty %}
+        <li>No transactions found.</li>
+    {% endfor %}
+</ul>
+
+<h2>Savings Goals</h2>
+<ul>
+    {% for goal in savings_goals %}
+        <li>{{ goal.goal_name }} - Target: ${{ goal.target_amount }} - Saved: ${{ goal.saved_amount }}</li>
+    {% empty %}
+        <li>No savings goals found.</li>
+    {% endfor %}
+</ul>
+
+<h2>Upcoming Events</h2>
+<ul>
+    {% for event in events %}
+        <li>{{ event.title }} - Date: {{ event.date }}</li>
+    {% empty %}
+        <li>No events found.</li>
+    {% endfor %}
+</ul>
+
+<h2>Chats</h2>
+<ul>
+    {% for chat in chats %}
+        <li><a href="{% url 'group_chat' chat.id %}">{{ chat.title }}</a></li>
+    {% empty %}
+        <li>No group chats found.</li>
+    {% endfor %}
+</ul>

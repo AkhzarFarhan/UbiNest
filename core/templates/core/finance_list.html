@@ -1,0 +1,10 @@
+<!-- core/templates/core/finance_list.html -->
+<h1>Financial Overview for {{ request.user.username }}</h1>
+<a href="{% url 'transaction_create' %}">Add New Transaction</a>
+<ul>
+    {% for transaction in transactions %}
+        <li>
+            {{ transaction.description }} - ${{ transaction.amount }} - {{ transaction.transaction_type }}
+        </li>
+    {% endfor %}
+</ul>

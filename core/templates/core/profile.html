@@ -1,0 +1,9 @@
+<!-- core/templates/core/profile.html -->
+<h1>{{ profile.user.username }}'s Profile</h1>
+<img src="{{ profile.avatar.url }}" alt="Avatar">
+<p>Role: {{ profile.role }}</p>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>
