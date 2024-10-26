@@ -29,7 +29,7 @@ env/
 
 # Specific virtual environment folder
 UbiNest/env/
-
+env/
 
 # Log files
 *.log
