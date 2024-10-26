@@ -1,4 +1,4 @@
-# usage: make git m="your comment"
+# usage: make git m='your comment'
 git:
 	git checkout dev
 	git add .
