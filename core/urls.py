@@ -5,6 +5,7 @@ urlpatterns = [
     path('login/', views.CustomLoginView.as_view(), name='login'),
     path('signup/', views.signup, name='signup'),
     path('', views.homepage, name='homepage'),
+    path('create_profile/', views.create_profile, name='create_profile'),
     path('profile/', views.profile, name='profile'),
     path('tasks/', views.task_list, name='task_list'),
     path('tasks/create/', views.task_create, name='task_create'),

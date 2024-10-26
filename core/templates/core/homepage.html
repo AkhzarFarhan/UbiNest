@@ -3,7 +3,11 @@
 
 <h2>Profile Overview</h2>
 <p>Role: {{ profile.role }}</p>
-<img src="{{ profile.avatar.url }}" alt="Avatar" style="width:100px; height:100px;">
+{% if profile.avatar %}
+    <img src="{{ profile.avatar.url }}" alt="Avatar" style="width:100px; height:100px;">
+{% else %}
+    <p>No avatar available.</p>
+{% endif %}
 <p>{{ profile.bio }}</p>
 
 <h2>Upcoming Tasks</h2>

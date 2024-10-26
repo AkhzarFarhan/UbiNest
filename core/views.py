@@ -24,7 +24,7 @@ class CustomLoginView(LoginView):
 
 @login_required
 def homepage(request):
-    profile = Profile.objects.get(user=request.user)
+    profile, created = Profile.objects.get_or_create(user=request.user)
     tasks = Task.objects.filter(assigned_to=request.user).order_by('due_date')[:5]  # Show 5 upcoming tasks
     transactions = FinancialTransaction.objects.filter(user=request.user).order_by('-date')[:5]  # Last 5 transactions
     savings_goals = SavingsGoal.objects.filter(user=request.user)
@@ -38,6 +38,7 @@ def homepage(request):
         'savings_goals': savings_goals,
         'events': events,
         'chats': chats,
+        'avatar_url': profile.avatar.url if profile.avatar and hasattr(profile.avatar, 'url') else None,
     }
     return render(request, 'core/homepage.html', context)
 
@@ -54,6 +55,19 @@ def profile(request):
         form = ProfileForm(instance=profile)
     return render(request, 'core/profile.html', {'form': form, 'profile': profile})
 
+
+@login_required
+def create_profile(request):
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.user = request.user
+            profile.save()
+            return redirect('profile')
+    else:
+        form = ProfileForm()
+    return render(request, 'core/create_profile.html', {'form': form})
 
 
 @login_required
